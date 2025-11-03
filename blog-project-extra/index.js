@@ -5,7 +5,7 @@ require('dotenv').config();
 const db = require('./configs/db');
 
 const app=express();
-const port=8081;
+const port=8001;
 
 app.set('view engine','ejs');
 app.use(bodyParser.urlencoded({extended:true}));
@@ -14,10 +14,12 @@ app.use(cookieParser());
 
 app.use('/',require('./routes/index'))
 
-app.listen(port,(err)=>{
-    if(!err){
+app.listen(port, (err) => {
+    if (!err) {
         db();
-        console.log("server started");
-        console.log("http://localhost:"+port);
+        console.log("✅ Server started...");
+        console.log(`👉 http://localhost:${port}`);
+    } else {
+        console.error("❌ Server failed:", err.message);
     }
-})
+});

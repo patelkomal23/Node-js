@@ -5,7 +5,7 @@ const app = express()
 
 app.listen(port,(err)=>{
     if(!err){
-        db()
+        
         console.log("server Start");
         console.log("http://localhost:" + port);
     }
