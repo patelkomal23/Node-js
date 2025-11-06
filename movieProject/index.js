@@ -1,18 +1,20 @@
 import express from "express";
-import dotenv from "./config/dotenv.js";
+import dotenv from "./configs/dotenv.js";
 import router from "./routers/index.js";
+import db from "./configs/db.js";
 
-const port = dotenv.PORT || 3000
 const app = express();
-app.set("view engine", "ejs")
-app.use(express.static('public'))
+const port = dotenv.PORT || 3000;
 
-app.use('/',router)
+app.set('view engine','ejs');
+app.use(express.static('public'));
+app.use(express.urlencoded({extended:true}));
 
-app.listen(port, (err) => {
-    if (!err) {
-        console.log("Serve Stared");
-        console.log("http://localhost:"+port);
+app.use('/',router);
+
+app.listen(port,(err)=>{
+    if(!err){
+        console.log("Server started.");        
+        console.log("http://localhost:"+port);        
     }
-
 })
